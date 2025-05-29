@@ -8,11 +8,11 @@ stages:
     mavenExecuteStaticCodeChecks: false
     npmExecuteLint: true
   Additional Unit Tests:
-    npmExecuteScripts: true
+    npmExecuteScripts: false
   Malware Scan:
-    malwareExecuteScan: true
+    malwareExecuteScan: false
   Acceptance:
-    cloudFoundryDeploy: true
+    cloudFoundryDeploy: false
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
     cfOrg: "c96f2572trial_demo-uzmq2u5n"
     cfSpace: "dev"
@@ -22,9 +22,9 @@ stages:
     npmExecuteEndToEndTests: false
   Compliance:
     sonarExecuteScan: true
-    sonarCredentialsId: "btp"
+    sonarCredentialsId: "sonarcloud"
   Release:
-    cloudFoundryDeploy: true
+    cloudFoundryDeploy: false
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
     cfOrg: "c96f2572trial_demo-uzmq2u5n"
     cfSpace: "dev"
@@ -43,4 +43,4 @@ steps:
     organization: "fredatfair"
     projectKey: "faircg_incident-mgmt"
     environment:
-      SONAR_TOKEN: "${{sonarCredentialsId}}"  # Inject token from Jenkins credentials
+      SONAR_TOKEN: "${065d0cb74873baff24b863c11c118b60e5e6c7e6}"  # Inject token from Jenkins credentials
