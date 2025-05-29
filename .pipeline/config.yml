@@ -22,7 +22,7 @@ stages:
     npmExecuteEndToEndTests: false
   Compliance:
     sonarExecuteScan: true
-    sonarCredentialsId: "sonarcloud"
+    sonarCredentialsId: "btp"
   Release:
     cloudFoundryDeploy: true
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
@@ -42,3 +42,5 @@ steps:
     host: "https://sonarcloud.io"
     organization: "fredatfair"
     projectKey: "faircg_incident-mgmt"
+    environment:
+      SONAR_TOKEN: "${{sonarCredentialsId}}"  # Inject token from Jenkins credentials
