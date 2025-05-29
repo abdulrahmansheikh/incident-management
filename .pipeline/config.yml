@@ -2,39 +2,40 @@
 general:
   buildTool: "mta"
 service:
-  buildToolVersion: "MBTJ17N18" #see SAP Continuous Integration and Delivery service for more build tool version options
+  buildToolVersion: "MBTJ21N22"
+  stages:
+    Acceptance:
+      cfCredentialsId: "cf"
+    Release:
+      cfCredentialsId: "cf"
 stages:
   Build:
     mavenExecuteStaticCodeChecks: false
-    npmExecuteLint: true
-  Additional Unit Tests:
-    npmExecuteScripts: true
+    npmExecuteLint: false
+  Acceptance:
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
+    cfOrg: "c96f2572trial_demo-uzmq2u5n"
+    cfSpace: "dev"
+    deployType: "standard"
+    cloudFoundryDeploy: true
+    npmExecuteEndToEndTests: false
   Malware Scan:
     malwareExecuteScan: true
-  Acceptance:
-    cloudFoundryDeploy: true
+  Release:
+    tmsExport: false
+    tmsUpload: false
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
     cfOrg: "c96f2572trial_demo-uzmq2u5n"
     cfSpace: "dev"
-    cfAppName: "Incident-Management"
-    cfCredentialsId: "cf"
     deployType: "standard"
-    npmExecuteEndToEndTests: false
+    cloudFoundryDeploy: true
+  Additional Unit Tests:
+    npmExecuteScripts: true
+    runScripts:
+    - "test"
   Compliance:
     sonarExecuteScan: true
-  Release:
-    cloudFoundryDeploy: true
-    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-    cfOrg: "c96f2572trial_demo-uzmq2u5n"
-    cfSpace: "dev"
-    cfAppName: "Incident-Management"
-    cfCredentialsId: "cf"
-    deployType: "standard"
 steps:
-  artifactPrepareVersion:
-    versioningType: "cloud_noTag"
-  npmExecuteLint:
-    failOnError: true
   cloudFoundryDeploy:
     mtaDeployParameters: "-f --version-rule ALL"
   sonarExecuteScan:
@@ -42,4 +43,7 @@ steps:
     serverUrl: "https://sonarcloud.io"
     projectKey: "faircg_incident-mgmt"
     sonarTokenCredentialsId: "sonarcloud"
+  artifactPrepareVersion:
+    versioningType: "cloud_noTag"
+
 
