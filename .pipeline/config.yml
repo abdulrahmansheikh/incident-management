@@ -41,8 +41,8 @@ steps:
   sonarExecuteScan:
     mode: "SonarQube"
     serverUrl: "https://sonarcloud.io"
-    projectKey: "faircg_incident-mgmt"
-    sonarTokenCredentialsId: "sonarcloud"
+    projectKey: "abdulrahmansheikh_incident-management"
+    sonarTokenCredentialsId: "sonar-demo-abdul"
   artifactPrepareVersion:
     versioningType: "cloud_noTag"
 
