@@ -26,7 +26,7 @@ class ProcessorService extends cds.ApplicationService {
       });
     }
     else {
-      console.log("TESTING")
+      console.log("TESTING");
     }
   }
 
