@@ -5,6 +5,7 @@ class ProcessorService extends cds.ApplicationService {
   init() {
     this.before("UPDATE", "Incidents", (req) => this.onUpdate(req));
     this.before("CREATE", "Incidents", (req) => this.changeUrgencyDueToSubject(req.data));
+    this.on('calc', () => 42)
 
     return super.init();
   }
@@ -24,6 +25,8 @@ class ProcessorService extends cds.ApplicationService {
           incident.urgency = { code: "H", descr: "High" };
         }
       });
+    else {
+      console.log("TESTING")
     }
   }
 
