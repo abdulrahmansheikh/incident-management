@@ -18,6 +18,13 @@ class ProcessorService extends cds.ApplicationService {
         }
       });
     }
+    if(data.ID === '1'){
+      incidents.forEach((incident) => {
+        if (incident.title?.toLowerCase().includes("urgent")) {
+          incident.urgency = { code: "H", descr: "High" };
+        }
+      });
+    }
   }
 
   /** Custom Validation */
